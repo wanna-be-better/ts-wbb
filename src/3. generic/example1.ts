@@ -24,3 +24,8 @@ let generic_example1_test2: DeepPartial<{ a: string, b: { c: string, d: { e: num
 type ListItem<T extends any[]> = T extends (infer X)[] ? X : never
 let generic_example1_test3: ListItem<string[]>;
 let generic_example1_test4: ListItem<[string, number, boolean]>;
+
+type Swap<T extends [any, any]> = T extends [infer X, infer Y] ? [Y, X] : never
+
+let generic_example1_test5: Swap<['a', 'b']>;
+let generic_example1_test6: Swap<[1, 2]>;
