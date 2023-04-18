@@ -74,3 +74,42 @@ const todoPick: TodoPreview = {
 };
 
 todoPick;
+
+// Omit Выбор объекта без выбранных полей
+
+interface TodoOmit {
+    title: string;
+    description: string;
+    completed: boolean;
+    createdAt: number;
+}
+
+type TodoPreviewOmit = Omit<TodoOmit, 'description'>;
+
+const todoOmit: TodoPreviewOmit = {
+    title: 'Clean room',
+    completed: false,
+    createdAt: 1615544252770
+};
+
+todoOmit;
+
+type TodoInfoOmit = Omit<TodoOmit, 'completed' | 'createdAt'>;
+
+const todoInfoOmit: TodoInfoOmit = {
+    title: 'Pick up kids',
+    description: 'Kindergarten closes at 5pm'
+};
+
+todoInfoOmit;
+
+// Exclude Исключает выбранные тип их типа объединения
+
+type T0Exclude = Exclude<'a' | 'b' | 'c', 'a'>;
+type T1Exclude = Exclude<'a' | 'b' | 'c', 'a' | 'b'>;
+type T2Exclude = Exclude<string | number | (() => void), Function>;
+
+// Extract Извлекает все члены объединения, которые могу быть присвоины типу объединения
+
+type T0Extract = Extract<'a' | 'b' | 'c', 'a' | 'f'>;
+type T1Extract = Extract<string | number | (() => void), Function>;
