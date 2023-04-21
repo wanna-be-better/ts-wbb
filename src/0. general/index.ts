@@ -113,3 +113,20 @@ type T2Exclude = Exclude<string | number | (() => void), Function>;
 
 type T0Extract = Extract<'a' | 'b' | 'c', 'a' | 'f'>;
 type T1Extract = Extract<string | number | (() => void), Function>;
+
+// NonNullable Убирает из типа null и undefined
+
+type T0NonNullable = NonNullable<string | number | undefined>;
+type T1NonNullable = NonNullable<string[] | null | undefined>;
+
+// Parameters Возвращает типы параметров функции
+
+type T0Parameters = Parameters<() => string>;
+type T1Parameters = Parameters<(s: string, a: number) => void>; // [string, number]
+
+// ReturnType Возвращаемый тип функции
+
+type T0ReturnType = ReturnType<() => string>; // string
+type T1ReturnType = ReturnType<(s: string) => void>; // void
+type T2ReturnType = ReturnType<<T>() => T>; // unknown
+type T3ReturnType = ReturnType<<T extends U, U extends number[]>() => T>; // number[]
