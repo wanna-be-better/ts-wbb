@@ -130,3 +130,23 @@ type T0ReturnType = ReturnType<() => string>; // string
 type T1ReturnType = ReturnType<(s: string) => void>; // void
 type T2ReturnType = ReturnType<<T>() => T>; // unknown
 type T3ReturnType = ReturnType<<T extends U, U extends number[]>() => T>; // number[]
+
+// InstanceType Тип функции конструктора
+
+class C {
+    x = 0;
+    y = 0;
+}
+
+
+type T0InstanceType = InstanceType<typeof C>; // C
+
+// ThisParameterType
+
+function toHex(this: Number) {
+    return this.toString(16);
+}
+
+function numberToString(n: ThisParameterType<typeof toHex>) {
+    return toHex.apply(n);
+}
